@@ -9,7 +9,7 @@ function App() {
       <Navbar />
       <BrowserRouter>
         <Routes>
-          <Route path="/home" element={<Homescreen />} />
+          <Route path="/home" exact element={<Homescreen />} />
         </Routes>
       </BrowserRouter>
     </div>

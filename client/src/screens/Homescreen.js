@@ -3,14 +3,15 @@ import axios from "axios";
 
 function Homescreen() {
   const [rooms, setRooms] = useState([]);
-  useEffect(async () => {
-    try {
-      const data = (await axios.get("api/rooms/getallrooms")).data;
-      setRooms(data);
-      console.log(data.length);
-    } catch (error) {
-      console.log(error);
-    }
+  // fetch data from the server
+  useEffect(() => {
+    axios.get("/api/rooms/getallrooms")
+    .then(res => {
+      setRooms(res.data.rooms);
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }, []);
   return (
     <div>
