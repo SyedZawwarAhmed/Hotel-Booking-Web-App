@@ -3,3 +3,17 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+:root {
+    --mw: 1200px;
+    --g: #f1f1f1;
+    --lg: #e5e5e5; 
+}
+
+body {
+    background-color: var(--lg);
+}
+
+.container {
+    max-width: var(--mw);
+}

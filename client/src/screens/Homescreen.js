@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Room from "../components/Room";
+import "../stylesheets/Home.css"
 
 function Homescreen() {
   const [rooms, setRooms] = useState([]);
@@ -16,7 +17,7 @@ function Homescreen() {
     });
   }, []);
   return (
-    <div>
+    <div class="rooms-container">
       {rooms.map((room, index) => <Room key={index} name={room.name} images={room.imageurls} description={room.description} type={room.type} />)}
     </div>
   );

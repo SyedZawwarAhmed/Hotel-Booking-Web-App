@@ -4,8 +4,15 @@ import "../stylesheets/Navbar.css";
 function Navbar() {
   return (
     <div className="navbar">
-      <button>Register</button>
-      <button>Login</button>
+      <div className="container nav-container">
+        <div className="logo">
+          <h1>Z ROOMS</h1>
+        </div>
+        <div className="nav-buttons">
+          <button className="btn nav-btn">Register</button>
+          <button className="btn nav-btn">Login</button>
+        </div>
+      </div>
     </div>
   );
 }
