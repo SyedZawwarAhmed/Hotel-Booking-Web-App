@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Room from "../components/Room";
 
 function Homescreen() {
   const [rooms, setRooms] = useState([]);
   // fetch data from the server
   useEffect(() => {
-    axios.get("/api/rooms/getallrooms")
+    axios.get("http://localhost:5000/api/rooms/getallrooms")
     .then(res => {
+      console.log(res.data.rooms)
       setRooms(res.data.rooms);
     })
     .catch(err => {
@@ -15,8 +17,7 @@ function Homescreen() {
   }, []);
   return (
     <div>
-      <h1>Home Screen</h1>
-      <h1>There are {rooms.length}</h1>
+      {rooms.map((room, index) => <Room key={index} name={room.name} images={room.imageurls} description={room.description} type={room.type} />)}
     </div>
   );
 }
