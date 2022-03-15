@@ -21,4 +21,8 @@
 .book-btn {
   align-self: flex-end;
   padding: 1em 2.5em;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--g);
+  background-color: var(--db);
 }

@@ -6,7 +6,7 @@ function Navbar() {
     <div className="navbar">
       <div className="container nav-container">
         <div className="logo">
-          <h1>Z ROOMS</h1>
+          <h1>Auberroom</h1>
         </div>
         <div className="nav-buttons">
           <button className="btn nav-btn">Register</button>

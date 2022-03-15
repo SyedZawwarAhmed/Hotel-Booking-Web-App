@@ -1,19 +1,30 @@
-*, *::before, *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai&display=swap');
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Bebas Neue", cursive;
 }
 
 :root {
-    --mw: 1200px;
-    --g: #f1f1f1;
-    --lg: #e5e5e5; 
+  --mw: 1200px;
+  --g: #f1f1f1;
+  --lg: #e5e5e5;
+  --db: #080b6e;
 }
 
 body {
-    background-color: var(--lg);
+  background-color: var(--lg);
+}
+
+p {
+    font-family: 'Hind Madurai', sans-serif;
 }
 
 .container {
-    max-width: var(--mw);
+  max-width: var(--mw);
 }
