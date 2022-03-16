@@ -25,4 +25,5 @@
   font-size: 1.2rem;
   color: var(--g);
   background-color: var(--db);
+  text-decoration: none;
 }

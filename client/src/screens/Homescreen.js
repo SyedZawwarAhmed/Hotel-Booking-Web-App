@@ -17,8 +17,8 @@ function Homescreen() {
     });
   }, []);
   return (
-    <div class="rooms-container">
-      {rooms.map((room, index) => <Room key={index} name={room.name} images={room.imageurls} description={room.description} type={room.type} />)}
+    <div className="rooms-container">
+      {rooms.map((room, index) => <Room key={index} _id={room._id} name={room.name} images={room.imageurls} description={room.description} type={room.type} />)}
     </div>
   );
 }

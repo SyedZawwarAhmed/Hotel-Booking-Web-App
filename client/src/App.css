@@ -27,4 +27,9 @@ p {
 
 .container {
   max-width: var(--mw);
+  margin: 0 auto;
+}
+
+.btn {
+    cursor: pointer;
 }
