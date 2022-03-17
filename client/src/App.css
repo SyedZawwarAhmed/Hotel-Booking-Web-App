@@ -32,4 +32,5 @@ p {
 
 .btn {
     cursor: pointer;
+    text-decoration: none;
 }
