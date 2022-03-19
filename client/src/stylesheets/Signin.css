@@ -1,0 +1,19 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  min-height: 80vh;
+  background-color: var(--lg);
+}
+
+input {
+  padding: 0.5em;
+  width: 20rem;
+}
+
+.signup-btn {
+  background-color: var(--db);
+  padding: 1em 2.5em;
+}

@@ -6,14 +6,19 @@
 .nav-container {
   margin: 0 auto;
   display: flex;
+  align-items: center;
 }
 
-.logo {
+.logo h1 {
   color: var(--g);
 }
 
 .nav-buttons {
   margin-left: auto;
+}
+
+.nav-buttons Link {
+  color: var(--g);
 }
 
 .nav-btn {

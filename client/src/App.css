@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Hind+Madurai&display=swap");
 
 *,
 *::before,
@@ -12,17 +12,17 @@
 
 :root {
   --mw: 1200px;
-  --g: #f1f1f1;
-  --lg: #e5e5e5;
+  --lg: #f1f1f1;
+  --g: #e5e5e5;
   --db: #080b6e;
 }
 
 body {
-  background-color: var(--lg);
+  background-color: var(--g);
 }
 
 p {
-    font-family: 'Hind Madurai', sans-serif;
+  font-family: "Hind Madurai", sans-serif;
 }
 
 .container {
@@ -31,6 +31,8 @@ p {
 }
 
 .btn {
-    cursor: pointer;
-    text-decoration: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--g);
 }

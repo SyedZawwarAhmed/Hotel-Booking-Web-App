@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../stylesheets/Navbar.css";
 
 function Navbar() {
@@ -12,8 +12,8 @@ function Navbar() {
           </Link>
         </div>
         <div className="nav-buttons">
-          <Link to="/user/signup" className="btn nav-btn">Register</Link>
-          <Link to="/user/signin" className="btn nav-btn">Login</Link>
+          <Link to="/user/signup" className="btn nav-btn">Singup</Link>
+          <Link to="/user/signin" className="btn nav-btn">Signin</Link>
         </div>
       </div>
     </div>
