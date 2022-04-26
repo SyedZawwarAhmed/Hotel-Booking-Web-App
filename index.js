@@ -7,7 +7,7 @@ const usersRoute = require("./routes/usersRoute")
 
 var cors = require('cors')
 
-app.use(cors()) // Use this after the variable declaration
+app.use(cors())
 app.use(express.json())
 app.use("/api/rooms", roomsRoute);
 app.use("/api/users", usersRoute)

@@ -26,3 +26,11 @@
   padding: 1em 3em;
   margin-left: 1rem;
 }
+
+.user-name {
+  color: white;
+}
+
+.signout-btn {
+  color: var(--db);
+}

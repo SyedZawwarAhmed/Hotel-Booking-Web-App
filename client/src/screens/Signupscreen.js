@@ -15,13 +15,19 @@ function Signupscreen() {
       password,
       cpassword
     }
-    axios.post("http://localhost:5000/api/users/signup", user)
-    .then(res => {
-      console.log(res.data)
-    })
-    .catch(err => {
-      console.log(err)
-    })
+    if (password === cpassword) {
+
+      axios.post("http://localhost:5000/api/users/signup", user)
+      .then(res => {
+        console.log(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    }
+    else {
+      console.log("Passwords should match")
+    }
   }
 
   return (
