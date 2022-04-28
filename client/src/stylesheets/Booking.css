@@ -1,0 +1,9 @@
+.booking-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 2em;
+}
+
+.booking-image {
+    object-fit: contain;
+}

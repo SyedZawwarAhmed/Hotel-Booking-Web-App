@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../stylesheets/Booking.css";
-import moment from "moment"
+import moment from "moment";
 
 function Bookingscreen() {
   const { roomid, fromDate, toDate } = useParams();
@@ -12,9 +12,8 @@ function Bookingscreen() {
 
   const fromdate = moment(fromDate, "DD-MM-YYYY");
   const todate = moment(toDate, "DD-MM-YYYY");
-  const totalDays = fromdate.diff(todate, "days") + 1
+  const totalDays = fromdate.diff(todate, "days") + 1;
 
-  console.log(totalDays)
 
   useEffect(() => {
     axios
@@ -30,22 +29,37 @@ function Bookingscreen() {
         setLoading(false);
       });
   }, [roomid]);
+
+  async function bookRoom() {
+    const bookingDetails = {
+      room,
+      userid : JSON.parse(localStorage.getItem("currentUser"))._id,
+      fromdate,
+      todate,
+      totalamount,
+      totalDays
+    }
+  }
+
   if (loading) {
     return <h1>Loading...</h1>;
   } else {
     return (
       <div className="container booking-container">
-        <img src={image} alt="" />
-        <h1> {room.name} </h1>
-        <h2> {room.description} </h2>
-        <h2> {room.rentperday} </h2>
-        <h2> {room.phonenumber} </h2>
-        <h2> {room.maxcount} </h2>
-        <h2> {room.type} </h2>
-        <h2> {fromDate} </h2>
-        <h2> {toDate} </h2>
-        <h2> Total days: {totalDays} </h2>
-        <button>Book Now</button>
+        <img className="booking-image" src={image} alt="" />
+        <div className="details">
+          <h1> {room.name} </h1>
+          {/* <h2> {room.description} </h2> */}
+          <h2> {room.rentperday} </h2>
+          <h2> {room.phonenumber} </h2>
+          <h2> {room.maxcount} </h2>
+          <h2> {room.type} </h2>
+          <h2> {fromDate} </h2>
+          <h2> {toDate} </h2>
+          <h2> Total days: {totalDays} </h2>
+          <h2> Total Amount: {room.rentperday * totalDays} </h2>
+          <button onClick={bookRoom}>Pay Now</button>
+        </div>
       </div>
     );
   }
