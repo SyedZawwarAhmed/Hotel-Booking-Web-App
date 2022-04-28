@@ -13,7 +13,7 @@ function App() {
       <Navbar />
         <Routes>
           <Route path="/home" exact element={<Homescreen />} />
-          <Route path="/booking/:roomid" exact element={<Bookingscreen />} />
+          <Route path="/booking/:roomid/:toDate/:fromDate" exact element={<Bookingscreen />} />
           <Route path="/user/signup"  element={<Signupscreen />} />
           <Route path="/user/signin"  element={<Signinscreen />} />
         </Routes>
