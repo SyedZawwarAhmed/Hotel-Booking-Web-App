@@ -9,11 +9,11 @@ function Bookingscreen() {
   const [loading, setLoading] = useState(true);
   const [image, setImage] = useState("");
   const [room, setRoom] = useState([]);
+  const [totalAmount, setTotalAmount] = useState();
 
   const fromdate = moment(fromDate, "DD-MM-YYYY");
   const todate = moment(toDate, "DD-MM-YYYY");
-  const totalDays = fromdate.diff(todate, "days") + 1;
-
+  const totalDays = todate.diff(fromdate, "days") + 1;
 
   useEffect(() => {
     axios
@@ -22,6 +22,7 @@ function Bookingscreen() {
         console.log(res.data.room);
         setRoom(res.data.room);
         setImage(res.data.room.imageurls[0]);
+        setTotalAmount(room.rentperday * totalDays);
         setLoading(false);
       })
       .catch((err) => {
@@ -33,12 +34,17 @@ function Bookingscreen() {
   async function bookRoom() {
     const bookingDetails = {
       room,
-      userid : JSON.parse(localStorage.getItem("currentUser"))._id,
+      userid: JSON.parse(localStorage.getItem("currentUser"))._id,
       fromdate,
       todate,
-      totalamount,
-      totalDays
-    }
+      totalAmount,
+      totalDays,
+    };
+
+    try {
+      const result = await axios.post("http://localhost:5000/api/bookings/bookroom", bookingDetails);
+      console.log(result)
+    } catch (error) {}
   }
 
   if (loading) {
@@ -48,7 +54,8 @@ function Bookingscreen() {
       <div className="container booking-container">
         <img className="booking-image" src={image} alt="" />
         <div className="details">
-          <h1> {room.name} </h1>
+          <h1>Name: </h1>
+          <h2> {room.name} </h2>
           {/* <h2> {room.description} </h2> */}
           <h2> {room.rentperday} </h2>
           <h2> {room.phonenumber} </h2>
@@ -58,7 +65,9 @@ function Bookingscreen() {
           <h2> {toDate} </h2>
           <h2> Total days: {totalDays} </h2>
           <h2> Total Amount: {room.rentperday * totalDays} </h2>
-          <button onClick={bookRoom}>Pay Now</button>
+          <button className="" onClick={bookRoom}>
+            Pay Now
+          </button>
         </div>
       </div>
     );
