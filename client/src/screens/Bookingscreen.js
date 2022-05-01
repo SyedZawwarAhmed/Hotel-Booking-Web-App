@@ -9,11 +9,11 @@ function Bookingscreen() {
   const [loading, setLoading] = useState(true);
   const [image, setImage] = useState("");
   const [room, setRoom] = useState([]);
-  const [totalAmount, setTotalAmount] = useState();
 
   const fromdate = moment(fromDate, "DD-MM-YYYY");
   const todate = moment(toDate, "DD-MM-YYYY");
   const totalDays = todate.diff(fromdate, "days") + 1;
+  const [totalAmount, setTotalAmount] = useState(0);
 
   useEffect(() => {
     axios
@@ -29,7 +29,7 @@ function Bookingscreen() {
         console.log(err);
         setLoading(false);
       });
-  }, [roomid]);
+  }, [room.rentperday]);
 
   async function bookRoom() {
     const bookingDetails = {
@@ -42,8 +42,11 @@ function Bookingscreen() {
     };
 
     try {
-      const result = await axios.post("http://localhost:5000/api/bookings/bookroom", bookingDetails);
-      console.log(result)
+      const result = await axios.post(
+        "http://localhost:5000/api/bookings/bookroom",
+        bookingDetails
+      );
+      console.log(result);
     } catch (error) {}
   }
 
@@ -54,9 +57,7 @@ function Bookingscreen() {
       <div className="container booking-container">
         <img className="booking-image" src={image} alt="" />
         <div className="details">
-          <h1>Name: </h1>
           <h2> {room.name} </h2>
-          {/* <h2> {room.description} </h2> */}
           <h2> {room.rentperday} </h2>
           <h2> {room.phonenumber} </h2>
           <h2> {room.maxcount} </h2>

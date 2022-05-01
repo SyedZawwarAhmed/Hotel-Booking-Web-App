@@ -10,9 +10,14 @@ function Room({ _id, name, images, description, type, toDate, fromDate }) {
         <h1 className="room-name">{name}</h1>
         <h3>{type}</h3>
         <p>{description}</p>
-        <Link className="btn book-btn" to={`/booking/${_id}/${fromDate}/${toDate}`}>
-          Book Now
-        </Link>
+        {fromDate && toDate && (
+          <Link
+            className="btn book-btn"
+            to={`/booking/${_id}/${fromDate}/${toDate}`}
+          >
+            Book Now
+          </Link>
+        )}
       </div>
     </div>
   );
