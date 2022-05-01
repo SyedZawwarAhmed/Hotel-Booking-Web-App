@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../stylesheets/Room.css";
 
-function Room({ _id, name, images, description, type, toDate, fromDate }) {
+function Room({ _id, name, images, description, type, toDate, fromDate, currentBookings }) {
   return (
     <div className="room">
       <img className="room-image" src={images[0]} alt="" />
