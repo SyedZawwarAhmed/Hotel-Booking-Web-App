@@ -1,7 +1,7 @@
 .room {
   display: flex;
   gap: 2rem;
-  background-color: var(--g);
+  background-color: white;
   padding: 2rem;
 }
 

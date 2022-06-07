@@ -17,8 +17,12 @@
   --db: #080b6e;
 }
 
-body {
-  background-color: var(--g);
+html, body {
+  background-color: var(--lg);
+}
+
+.App {
+  background-color: var(--lg);
 }
 
 p {
