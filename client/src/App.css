@@ -23,6 +23,7 @@ html, body {
 
 .App {
   background-color: var(--lg);
+  min-height: 100vh;
 }
 
 p {

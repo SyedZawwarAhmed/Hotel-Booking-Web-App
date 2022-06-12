@@ -17,14 +17,12 @@
   margin-left: auto;
 }
 
-.nav-buttons Link {
-  color: var(--g);
-}
-
 .nav-btn {
   align-self: flex-end;
   padding: 1em 3em;
   margin-left: 1rem;
+  color: var(--db);
+  background-color: var(--lg);
 }
 
 .user-name {

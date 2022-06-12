@@ -39,6 +39,7 @@ function Bookingscreen() {
       todate,
       totalAmount,
       totalDays,
+      image
     };
 
     try {
@@ -46,6 +47,7 @@ function Bookingscreen() {
         "http://localhost:5000/api/bookings/bookroom",
         bookingDetails
       );
+      window.location.href = "/user/profile"
       console.log(result);
     } catch (error) {}
   }

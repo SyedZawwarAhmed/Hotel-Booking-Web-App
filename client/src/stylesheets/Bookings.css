@@ -1,0 +1,19 @@
+.booking {
+  background-color: white;
+  padding: 2em;
+  margin-bottom: 1em;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 3em;
+}
+
+.col-1 .booking-img {
+  width: 20rem;
+}
+
+.cancel-btn {
+    float: right;
+    font-size: 1.2rem;
+    padding: 0.5em 1.25em;
+    background-color: var(--db);
+}

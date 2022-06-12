@@ -34,6 +34,10 @@ const bookingSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    image: {
+      type: String,
+      required: true,
+    },
     status: {
       type: String,
       required: true,
@@ -46,4 +50,4 @@ const bookingSchema = mongoose.Schema(
 );
 
 const bookingModel = mongoose.model("bookings", bookingSchema);
-module.exports = bookingModel
+module.exports = bookingModel;

@@ -3,15 +3,12 @@ import { Link } from "react-router-dom";
 import "../stylesheets/Navbar.css";
 
 function Navbar() {
-  
-  const currentUser = 
-    JSON.parse(localStorage.getItem("currentUser"))
-
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   function removeCurrentUser() {
     console.log("user removed");
     localStorage.removeItem("currentUser");
-    window.location.href = "/user/signin"
+    window.location.href = "/user/signin";
   }
 
   return (
@@ -25,9 +22,15 @@ function Navbar() {
         {currentUser ? (
           <div className="nav-buttons">
             <h1 className="user-name">{currentUser.name}</h1>
-            <button className="btn nav-btn signout-btn" onClick={removeCurrentUser}>
+            <button
+              className="btn nav-btn signout-btn"
+              onClick={removeCurrentUser}
+            >
               Signout
             </button>
+            <Link to="/user/profile" className="btn nav-btn profile-btn">
+              Profile
+            </Link>
           </div>
         ) : (
           <div className="nav-buttons">
