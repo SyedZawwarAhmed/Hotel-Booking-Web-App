@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../stylesheets/Booking.css";
 import moment from "moment";
-import StripeCheckout from "react-stripe-checkout";
 
 function Bookingscreen() {
   const { roomid, fromDate, toDate } = useParams();
@@ -16,25 +15,6 @@ function Bookingscreen() {
   const totalDays = todate.diff(fromdate, "days") + 1;
   const [totalAmount, setTotalAmount] = useState(0);
 
-  async function onToken(token) {
-    const bookingDetails = {
-      room,
-      userid: JSON.parse(localStorage.getItem("currentUser"))._id,
-      fromdate,
-      todate,
-      totalAmount,
-      totalDays,
-      token
-    };
-
-    try {
-      const result = await axios.post(
-        "http://localhost:5000/api/bookings/bookroom",
-        bookingDetails,
-      );
-      console.log(result);
-    } catch (error) {}
-  }
   useEffect(() => {
     axios
       .get(`http://localhost:5000/api/rooms/getroom/${roomid}`)
@@ -50,6 +30,25 @@ function Bookingscreen() {
         setLoading(false);
       });
   }, [room.rentperday]);
+
+  async function bookRoom() {
+    const bookingDetails = {
+      room,
+      userid: JSON.parse(localStorage.getItem("currentUser"))._id,
+      fromdate,
+      todate,
+      totalAmount,
+      totalDays,
+    };
+
+    try {
+      const result = await axios.post(
+        "http://localhost:5000/api/bookings/bookroom",
+        bookingDetails
+      );
+      console.log(result);
+    } catch (error) {}
+  }
 
   if (loading) {
     return <h1>Loading...</h1>;
@@ -67,15 +66,9 @@ function Bookingscreen() {
           <h2> {toDate} </h2>
           <h2> Total days: {totalDays} </h2>
           <h2> Total Amount: {room.rentperday * totalDays} </h2>
-
-          <StripeCheckout
-            amount={totalAmount * 100}
-            currency="USD"
-            token={onToken}
-            stripeKey="pk_test_51Kv42BG9UfMrXKtib4S8ITdK68XKyWgGgNSUTw4EA3GLL4rfZjg3MPeluUZxqWGKo0iKwgiIIE0EAKNP8QBigJAN00oUGZtHXU"
-          >
-            <button className="">Pay Now</button>
-          </StripeCheckout>
+          <button className="" onClick={bookRoom}>
+            Pay Now
+          </button>
         </div>
       </div>
     );
