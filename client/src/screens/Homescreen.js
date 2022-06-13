@@ -4,24 +4,29 @@ import moment from "moment";
 import Room from "../components/Room";
 import "antd/dist/antd.css";
 import { DatePicker } from "antd";
+import { Input } from "antd";
+import { DownOutlined, UserOutlined } from "@ant-design/icons";
+import { Dropdown, Menu, message } from "antd";
 import "../stylesheets/Home.css";
 
 function Homescreen() {
   const { RangePicker } = DatePicker;
   const [rooms, setRooms] = useState([]);
+  const [tempRooms, setTempRooms] = useState([]);
   const [fromDate, setFromDate] = useState();
   const [toDate, setToDate] = useState();
+
   // fetch data from the server
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/rooms/getallrooms")
-      .then((res) => {
-        console.log(res.data.rooms);
-        setRooms(res.data.rooms);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  useEffect(async () => {
+    try {
+      const data = await axios.get(
+        "http://localhost:5000/api/rooms/getallrooms"
+      );
+      setRooms(data.data.rooms);
+      setTempRooms(data.data.rooms);
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   function filterByDate(dates) {
@@ -29,11 +34,62 @@ function Homescreen() {
     setToDate(moment(dates[1]).format("DD-MM-YYYY"));
   }
 
+  const handleButtonClick = (e) => {
+    message.info("Click on left button.");
+    console.log("click left button", e);
+  };
+
+  const handleMenuClick = (e) => {
+    if (e.key === "1") {
+      setRooms(tempRooms);
+    } else if (e.key === "2") {
+      setRooms(() => {
+        return tempRooms.filter((room) => room.type === "Delux");
+      });
+    } else if (e.key === "3") {
+      setRooms(() => {
+        return tempRooms.filter((room) => room.type === "Non-Delux");
+      });
+    }
+  };
+
+  const menu = (
+    <Menu
+      onClick={handleMenuClick}
+      items={[
+        {
+          label: "all",
+          key: "1",
+          icon: <UserOutlined />,
+        },
+        {
+          label: "delux",
+          key: "2",
+          icon: <UserOutlined />,
+        },
+        {
+          label: "non-delux",
+          key: "3",
+          icon: <UserOutlined />,
+        },
+      ]}
+    />
+  );
+
   return (
     <>
       <div className="rooms-container">
         <div className="row">
           <RangePicker format="DD-MM-YYYY" onChange={filterByDate} />
+          <Input placeholder="Search" />
+
+          <Dropdown.Button
+            className="dropdown"
+            onClick={handleButtonClick}
+            overlay={menu}
+          >
+            Dropdown
+          </Dropdown.Button>
         </div>
         {rooms
           .filter((room) => {

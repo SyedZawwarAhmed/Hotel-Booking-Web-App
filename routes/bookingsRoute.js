@@ -52,19 +52,17 @@ router.post("/getBookings", async (req, res) => {
 
 router.post("/cancelBooking", async (req, res) => {
   try {
-    const data = await Booking.findByIdAndDelete(req.body.bookingid);
-    const removed = await Room.findByIdAndUpdate(
-      req.body.roomid,
-      {
-        // remove the currentbooking from the currentbookings array
-        $pull: {
-          currentbookings: { bookingid: req.body.bookingid },
-        }
-      },
-      { new: true }
+    const { bookingid, roomid } = req.body;
+    const cancelledBooking = await Booking.findOne({ _id: bookingid });
+    cancelledBooking.status = "Cancelled";
+    cancelledBooking.save();
+
+    const tempRoom = await Room.findOne({ _id: roomid });
+    tempRoom.currentbookings = tempRoom.currentbookings.filter(
+      (booking) => booking.bookingid.toString() !== bookingid
     );
-    console.log(removed)
-    res.send(data);
+    await tempRoom.save();
+    res.send(cancelledBooking);
   } catch (error) {
     res.send(error);
   }

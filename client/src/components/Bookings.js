@@ -24,10 +24,14 @@ function Bookings({ user }) {
         { bookingid: booking._id, roomid: booking.roomid }
       );
       setBookings(() => {
-          const filteredbookings = bookings.filter((booking) => booking._id !== data.data._id);
-          return filteredbookings;
-      })
-      
+        const filteredbookings = bookings.map((booking) => {
+          if (data.data._id === booking._id) {
+            booking.status = "Cancelled";
+          }
+          return booking;
+        });
+        return filteredbookings;
+      });
     } catch (error) {
       console.log(error);
     }
