@@ -15,6 +15,8 @@ function Homescreen() {
   const [tempRooms, setTempRooms] = useState([]);
   const [fromDate, setFromDate] = useState();
   const [toDate, setToDate] = useState();
+  const [dropdownLabel, setDropdownLabel] = useState("All")
+  const [searchInput, setSearchInput] = useState("")
 
   // fetch data from the server
   useEffect(async () => {
@@ -24,6 +26,7 @@ function Homescreen() {
       );
       setRooms(data.data.rooms);
       setTempRooms(data.data.rooms);
+      console.log(data.data.rooms)
     } catch (error) {
       console.log(error);
     }
@@ -41,17 +44,30 @@ function Homescreen() {
 
   const handleMenuClick = (e) => {
     if (e.key === "1") {
+      setDropdownLabel("All")
       setRooms(tempRooms);
     } else if (e.key === "2") {
+      setDropdownLabel("Delux")
       setRooms(() => {
         return tempRooms.filter((room) => room.type === "Delux");
       });
     } else if (e.key === "3") {
+      setDropdownLabel("Non-Delux")
       setRooms(() => {
         return tempRooms.filter((room) => room.type === "Non-Delux");
       });
     }
   };
+
+  const handleInput = (e) => {
+    setSearchInput(e.target.value)
+  }
+
+  const handleSearch = () => {
+    setRooms(() => {
+      return tempRooms.filter(room => room.name.toLowerCase().includes(searchInput.toLowerCase()))
+    })
+  }
 
   const menu = (
     <Menu
@@ -81,14 +97,14 @@ function Homescreen() {
       <div className="rooms-container">
         <div className="row">
           <RangePicker format="DD-MM-YYYY" onChange={filterByDate} />
-          <Input placeholder="Search" />
+          <Input placeholder="Search" onChange={(e) => handleInput(e)} onKeyUp={handleSearch} />
 
           <Dropdown.Button
             className="dropdown"
             onClick={handleButtonClick}
             overlay={menu}
           >
-            Dropdown
+            {dropdownLabel}
           </Dropdown.Button>
         </div>
         {rooms
