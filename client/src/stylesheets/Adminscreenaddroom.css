@@ -1,0 +1,11 @@
+.admin-panel-addroom {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    gap: 1em;
+}
+
+.admin-panel-addroom * {
+    width: min(40rem, 100%);
+    font-size: 1.2rem;
+}

@@ -31,6 +31,11 @@ function Navbar() {
             <Link to="/user/profile" className="btn nav-btn profile-btn">
               Profile
             </Link>
+            {currentUser.isAdmin && (
+              <Link to="/user/admin" className="btn nav-btn profile-btn">
+                Admin
+              </Link>
+            )}
           </div>
         ) : (
           <div className="nav-buttons">

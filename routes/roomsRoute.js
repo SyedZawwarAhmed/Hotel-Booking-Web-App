@@ -20,4 +20,23 @@ router.get("/getroom/:roomid", async (req, res) => {
   }
 })
 
+router.post("/addroom", async (req, res) => {
+  try {
+    const body = {
+      currentbookings: [],
+      description: req.body.description,
+      imageurls: [req.body.firstImg, req.body.secondImg, req.body.thirdImg],
+      maxcount: parseInt(req.body.maxCount),
+      name: req.body.name,
+      phonenumber: req.body.phoneNumber,
+      rentperday: parseInt(req.body.rentPerDay),
+      type: req.body.type
+    }
+    const newRoom = await new Room(body)
+    await newRoom.save();
+  } catch (error) {
+    return res.status(400).json({ message: error.message });
+  }
+})
+
 module.exports = router;

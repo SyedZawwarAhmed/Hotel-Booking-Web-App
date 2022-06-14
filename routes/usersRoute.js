@@ -37,4 +37,21 @@ router.post("/signin", async (req, res) => {
   }
 });
 
+router.get("/getallusers", async (req, res) => {
+  try {
+    const users = await User.find({})
+    const usersToBeSent = users.map(user => {
+      return {
+        name: user.name,
+        email: user.email, 
+        isAdmin: user.isAdmin,
+        _id: user._id
+      }
+    })
+    res.send(usersToBeSent)
+  } catch (error) {
+    res.status(400).json({error})
+  }
+})
+
 module.exports = router;

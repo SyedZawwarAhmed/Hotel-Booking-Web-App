@@ -1,0 +1,15 @@
+.admin-panel-user {
+    border: 1px solid var(--g);
+    background-color: white;
+}
+
+.admin-panel-user > * {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.admin-panel-user > * * {
+    border: 1px solid var(--g);
+    padding: 0.5em;
+    margin: 0;
+}

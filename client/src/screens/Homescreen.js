@@ -5,7 +5,7 @@ import Room from "../components/Room";
 import "antd/dist/antd.css";
 import { DatePicker } from "antd";
 import { Input } from "antd";
-import { DownOutlined, UserOutlined } from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
 import { Dropdown, Menu, message } from "antd";
 import "../stylesheets/Home.css";
 

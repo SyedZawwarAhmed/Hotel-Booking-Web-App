@@ -41,6 +41,15 @@ router.post("/bookroom", async (req, res) => {
   }
 });
 
+router.get("/getallbookings", async (req, res) => {
+  try {
+    const bookings = await Booking.find({});
+    res.send(bookings);
+  } catch (error) {
+    res.send(error.message);
+  }
+});
+
 router.post("/getBookings", async (req, res) => {
   try {
     const bookings = await Booking.find({ userid: req.body.id });

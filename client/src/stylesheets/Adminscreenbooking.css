@@ -1,0 +1,19 @@
+.admin-panel-booking {
+  border: 1px solid var(--g);
+    background-color: white;
+}
+
+.admin-panel-booking > * {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.admin-panel-booking > * * {
+  border: 1px solid var(--g);
+  padding: 0.5em;
+  margin: 0;
+}
+
+.addroom-btn {
+    background-color: var(--db);
+}
