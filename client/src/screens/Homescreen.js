@@ -6,8 +6,10 @@ import "antd/dist/antd.css";
 import { DatePicker } from "antd";
 import { Input } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import { Dropdown, Menu, message } from "antd";
+import { Dropdown, Menu } from "antd";
 import "../stylesheets/Home.css";
+import Loading from "../components/Loading";
+import Error from "../components/Error";
 
 function Homescreen() {
   const { RangePicker } = DatePicker;
@@ -15,8 +17,10 @@ function Homescreen() {
   const [tempRooms, setTempRooms] = useState([]);
   const [fromDate, setFromDate] = useState();
   const [toDate, setToDate] = useState();
-  const [dropdownLabel, setDropdownLabel] = useState("All")
-  const [searchInput, setSearchInput] = useState("")
+  const [dropdownLabel, setDropdownLabel] = useState("All");
+  const [searchInput, setSearchInput] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   // fetch data from the server
   useEffect(async () => {
@@ -26,9 +30,11 @@ function Homescreen() {
       );
       setRooms(data.data.rooms);
       setTempRooms(data.data.rooms);
-      console.log(data.data.rooms)
+      setLoading(false);
     } catch (error) {
-      console.log(error);
+      console.log(error.message)
+      setLoading(false);
+      setError(error.message);
     }
   }, []);
 
@@ -37,22 +43,19 @@ function Homescreen() {
     setToDate(moment(dates[1]).format("DD-MM-YYYY"));
   }
 
-  const handleButtonClick = (e) => {
-    message.info("Click on left button.");
-    console.log("click left button", e);
-  };
+  const handleButtonClick = (e) => {};
 
   const handleMenuClick = (e) => {
     if (e.key === "1") {
-      setDropdownLabel("All")
+      setDropdownLabel("All");
       setRooms(tempRooms);
     } else if (e.key === "2") {
-      setDropdownLabel("Delux")
+      setDropdownLabel("Delux");
       setRooms(() => {
         return tempRooms.filter((room) => room.type === "Delux");
       });
     } else if (e.key === "3") {
-      setDropdownLabel("Non-Delux")
+      setDropdownLabel("Non-Delux");
       setRooms(() => {
         return tempRooms.filter((room) => room.type === "Non-Delux");
       });
@@ -60,14 +63,16 @@ function Homescreen() {
   };
 
   const handleInput = (e) => {
-    setSearchInput(e.target.value)
-  }
+    setSearchInput(e.target.value);
+  };
 
   const handleSearch = () => {
     setRooms(() => {
-      return tempRooms.filter(room => room.name.toLowerCase().includes(searchInput.toLowerCase()))
-    })
-  }
+      return tempRooms.filter((room) =>
+        room.name.toLowerCase().includes(searchInput.toLowerCase())
+      );
+    });
+  };
 
   const menu = (
     <Menu
@@ -94,72 +99,82 @@ function Homescreen() {
 
   return (
     <>
-      <div className="rooms-container">
-        <div className="row">
-          <RangePicker format="DD-MM-YYYY" onChange={filterByDate} />
-          <Input placeholder="Search" onChange={(e) => handleInput(e)} onKeyUp={handleSearch} />
+      {loading ? (
+        <Loading />
+      ) : error !== "" ? (
+        <Error message={error} />
+      ) : (
+        <div className="rooms-container">
+          <div className="row">
+            <RangePicker format="DD-MM-YYYY" onChange={filterByDate} />
+            <Input
+              placeholder="Search"
+              onChange={(e) => handleInput(e)}
+              onKeyUp={handleSearch}
+            />
 
-          <Dropdown.Button
-            className="dropdown"
-            onClick={handleButtonClick}
-            overlay={menu}
-          >
-            {dropdownLabel}
-          </Dropdown.Button>
-        </div>
-        {rooms
-          .filter((room) => {
-            let showRoom = true;
-            if (room.currentbookings.length > 0) {
-              for (const currentbooking of room.currentbookings) {
-                if (
-                  moment(fromDate, "DD-MM-YYYY").isBetween(
-                    moment(currentbooking.fromdate, "DD-MM-YYYY"),
-                    moment(currentbooking.todate, "DD-MM-YYYY"),
-                    undefined,
-                    "[]"
-                  ) ||
-                  moment(toDate, "DD-MM-YYYY").isBetween(
-                    moment(currentbooking.fromdate, "DD-MM-YYYY"),
-                    moment(currentbooking.todate, "DD-MM-YYYY"),
-                    undefined,
-                    "[]"
-                  ) ||
-                  moment(currentbooking.fromdate, "DD-MM-YYYY").isBetween(
-                    moment(fromDate, "DD-MM-YYYY"),
-                    moment(toDate, "DD-MM-YYYY"),
-                    undefined,
-                    "[]"
-                  ) ||
-                  moment(currentbooking.todate, "DD-MM-YYYY").isBetween(
-                    moment(fromDate, "DD-MM-YYYY"),
-                    moment(toDate, "DD-MM-YYYY"),
-                    undefined,
-                    "[]"
-                  )
-                ) {
-                  showRoom = false;
+            <Dropdown.Button
+              className="dropdown"
+              onClick={handleButtonClick}
+              overlay={menu}
+            >
+              {dropdownLabel}
+            </Dropdown.Button>
+          </div>
+          {rooms
+            .filter((room) => {
+              let showRoom = true;
+              if (room.currentbookings.length > 0) {
+                for (const currentbooking of room.currentbookings) {
+                  if (
+                    moment(fromDate, "DD-MM-YYYY").isBetween(
+                      moment(currentbooking.fromdate, "DD-MM-YYYY"),
+                      moment(currentbooking.todate, "DD-MM-YYYY"),
+                      undefined,
+                      "[]"
+                    ) ||
+                    moment(toDate, "DD-MM-YYYY").isBetween(
+                      moment(currentbooking.fromdate, "DD-MM-YYYY"),
+                      moment(currentbooking.todate, "DD-MM-YYYY"),
+                      undefined,
+                      "[]"
+                    ) ||
+                    moment(currentbooking.fromdate, "DD-MM-YYYY").isBetween(
+                      moment(fromDate, "DD-MM-YYYY"),
+                      moment(toDate, "DD-MM-YYYY"),
+                      undefined,
+                      "[]"
+                    ) ||
+                    moment(currentbooking.todate, "DD-MM-YYYY").isBetween(
+                      moment(fromDate, "DD-MM-YYYY"),
+                      moment(toDate, "DD-MM-YYYY"),
+                      undefined,
+                      "[]"
+                    )
+                  ) {
+                    showRoom = false;
+                  }
                 }
               }
-            }
-            if (showRoom) {
-              return room;
-            }
-          })
-          .map((room, index) => (
-            <Room
-              key={index}
-              _id={room._id}
-              name={room.name}
-              images={room.imageurls}
-              description={room.description}
-              type={room.type}
-              fromDate={fromDate}
-              toDate={toDate}
-              currentBookings={room.currentbookings}
-            />
-          ))}
-      </div>
+              if (showRoom) {
+                return room;
+              }
+            })
+            .map((room, index) => (
+              <Room
+                key={index}
+                _id={room._id}
+                name={room.name}
+                images={room.imageurls}
+                description={room.description}
+                type={room.type}
+                fromDate={fromDate}
+                toDate={toDate}
+                currentBookings={room.currentbookings}
+              />
+            ))}
+        </div>
+      )}
     </>
   );
 }
