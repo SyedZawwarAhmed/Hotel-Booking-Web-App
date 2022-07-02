@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { Input } from "antd";
 import axios from "axios";
+import Error from "../components/Error";
 import "../stylesheets/Signin.css";
 
 function Signinscreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const validateEmail = (email) => {
     return String(email)
@@ -15,6 +19,7 @@ function Signinscreen() {
   };
 
   async function signin() {
+    setLoading(true);
     if (validateEmail(email)) {
       const user = {
         email,
@@ -26,34 +31,45 @@ function Signinscreen() {
         .then((res) => {
           console.log(res.data);
           localStorage.setItem("currentUser", JSON.stringify(res.data));
+          setLoading(false);
           window.location.href = "/home";
         })
         .catch((err) => {
-          console.log(err);
+          setLoading(false);
+          setError(err.message);
+          console.log("🚀 ~ file: Signinscreen.js ~ line 40 ~ signin ~ err.message", err)
         });
     } else {
-      console.log("enter a valid email address");
+      setError("Invalid email");
+      setLoading(false);
     }
   }
 
   return (
-    <div className="input-container">
+    <div className="input-container container">
       <h1>Sign in</h1>
-      <input
+      <Input
+        className="input"
         type="text"
         placeholder="email"
         onChange={(e) => {
           setEmail(e.target.value);
         }}
       />
-      <input
+      <Input
+        className="input"
         type="text"
         placeholder="password"
+        status=""
         onChange={(e) => {
           setPassword(e.target.value);
         }}
       />
-      <button className="btn signup-btn" onClick={signin}>
+      {error !== "" && <label className="error-label">{error}</label>}
+      <button
+        className={loading ? "btn signup-btn disabled" : "btn signup-btn"}
+        onClick={signin}
+      >
         Signin
       </button>
     </div>
