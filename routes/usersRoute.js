@@ -20,17 +20,22 @@ router.post("/signup", async (req, res) => {
 router.post("/signin", async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await User.findOne({ email: email, password: password });
+    const user = await User.findOne({ email: email});
     if (user) {
-      const userToBeSent = {
-        name: user.name,
-        email: user.email, 
-        isAdmin: user.isAdmin,
-        _id: user._id
+      if(password === user.password) {
+        
+        const userToBeSent = {
+          name: user.name,
+          email: user.email, 
+          isAdmin: user.isAdmin,
+          _id: user._id
+        }
+        res.send(userToBeSent);
+      } else {
+        return res.status(400).send("Password is incorrect");
       }
-      res.send(userToBeSent);
     } else {
-      return res.status(400).json({ message: "User not found" });
+      return res.status(400).send({ message: "User not found" });
     }
   } catch (error) {
     return res.status(400).json({ error });
@@ -50,7 +55,7 @@ router.get("/getallusers", async (req, res) => {
     })
     res.send(usersToBeSent)
   } catch (error) {
-    res.status(400).json({error})
+    res.status(400).send({error})
   }
 })
 

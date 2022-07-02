@@ -1,0 +1,16 @@
+.Error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10vh;
+}
+
+.error-message {
+  color: hsl(0, 94%, 36%);
+  background-color: hsla(0, 93%, 36%, 0.219);
+  padding: 1em 3em;
+  border-radius: 0.3em;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

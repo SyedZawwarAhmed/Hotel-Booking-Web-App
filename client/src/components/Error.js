@@ -1,10 +1,14 @@
-import React from 'react'
-import "../stylesheets/Error.css"
+import React from "react";
+import "../stylesheets/Error.css";
 
-function Error({message}) {
+function Error({ message }) {
   return (
-    <div className="container">{message}</div>
-  )
+    <div className="container Error">
+      <h1 className="error-message">
+        {message}
+      </h1>
+    </div>
+  );
 }
 
-export default Error
+export default Error;

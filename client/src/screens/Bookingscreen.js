@@ -9,15 +9,16 @@ import Error from "../components/Error";
 function Bookingscreen() {
   const { roomid, fromDate, toDate } = useParams();
   const [image, setImage] = useState("");
+  const [images, setImages] = useState([]);
   const [room, setRoom] = useState([]);
-  
+
   const fromdate = moment(fromDate, "DD-MM-YYYY");
   const todate = moment(toDate, "DD-MM-YYYY");
   const totalDays = todate.diff(fromdate, "days") + 1;
   const [totalAmount, setTotalAmount] = useState(0);
-  
+
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
 
   useEffect(() => {
     axios
@@ -25,12 +26,13 @@ function Bookingscreen() {
       .then((res) => {
         console.log(res.data.room);
         setRoom(res.data.room);
+        setImages(res.data.room.imageurls);
         setImage(res.data.room.imageurls[0]);
         setTotalAmount(room.rentperday * totalDays);
         setLoading(false);
       })
       .catch((err) => {
-        setError(err.message)
+        setError(err.message);
         setLoading(false);
       });
   }, [room.rentperday]);
@@ -43,7 +45,7 @@ function Bookingscreen() {
       todate,
       totalAmount,
       totalDays,
-      image
+      image,
     };
 
     try {
@@ -51,7 +53,7 @@ function Bookingscreen() {
         "http://localhost:5000/api/bookings/bookroom",
         bookingDetails
       );
-      window.location.href = "/user/profile"
+      window.location.href = "/user/profile";
       console.log(result);
     } catch (error) {}
   }
@@ -59,22 +61,30 @@ function Bookingscreen() {
   if (loading) {
     return <Loading />;
   } else if (error !== "") {
-    return <Error message={error} />
-  }else {
+    return <Error message={error} />;
+  } else {
     return (
       <div className="container booking-container">
-        <img className="booking-image" src={image} alt="" />
+        <div className="image-container">
+          <img className="booking-image" src={image} alt="" />
+          <div className="gallery">
+            {images.map((image) => (
+              <img src={image} alt="" />
+            ))}
+          </div>
+        </div>
         <div className="details">
-          <h2> {room.name} </h2>
-          <h2> {room.rentperday} </h2>
-          <h2> {room.phonenumber} </h2>
-          <h2> {room.maxcount} </h2>
-          <h2> {room.type} </h2>
-          <h2> {fromDate} </h2>
-          <h2> {toDate} </h2>
+          <h1> {room.name} </h1>
+          <h2> Rent per day:- {room.rentperday} </h2>
+          <h2> Max count:- {room.maxcount} </h2> 
+          <h2> Category:- {room.type} </h2>
+          <span>
+            <h2> From:- {fromDate} </h2>
+            <h2> To:- {toDate} </h2>
+          </span>
           <h2> Total days: {totalDays} </h2>
           <h2> Total Amount: {room.rentperday * totalDays} </h2>
-          <button className="" onClick={bookRoom}>
+          <button className="btn signup-btn booknow-btn" onClick={bookRoom}>
             Pay Now
           </button>
         </div>
