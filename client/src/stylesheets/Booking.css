@@ -6,7 +6,7 @@
 }
 
 .booking-image {
-  width: min(30rem, 100%);
+  width: 40rem;
   object-fit: contain;
 }
 
@@ -28,6 +28,11 @@
 
 .booknow-btn {
   font-size: 1.4rem;
-  align-self: flex-end;
+  align-self: flex-start;
   padding: 0.5em 1.75em !important;
+  margin: 0 !important;
+}
+
+.active-image {
+  border: 2px solid red;
 }

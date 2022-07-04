@@ -1,3 +1,4 @@
+import Input from "antd/lib/input/Input";
 import axios from "axios";
 import React, { useState } from "react";
 import "../stylesheets/Signin.css";
@@ -8,13 +9,16 @@ function Signupscreen() {
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
   function sendDetails() {
     const user = {
       name,
       email,
       password,
-      cpassword
-    }
+      cpassword,
+    };
 
     const validateEmail = (email) => {
       return String(email)
@@ -25,58 +29,63 @@ function Signupscreen() {
     };
 
     if (validateEmail(email)) {
-
       if (password === cpassword) {
-  
-        axios.post("http://localhost:5000/api/users/signup", user)
-        .then(res => {
-          console.log(res.data)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-      }
-      else {
-        console.log("Passwords should match")
+        axios
+          .post("http://localhost:5000/api/users/signup", user)
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch((err) => {
+            setLoading(false);
+            setError(err.response.data);
+          });
+      } else {
+        setError("Passwords should match");
       }
     } else {
-      console.log("Enter a valid email address")
+      setError("Enter a valid email address");
     }
-
   }
 
   return (
     <div className="input-container">
       <h1>Sign Up</h1>
-      <input
+      <Input
+        className="input"
         type="text"
         onChange={(e) => {
           setName(e.target.value);
         }}
         placeholder="name"
       />
-      <input
+      <Input
+        className="input"
         type="text"
         onChange={(e) => {
           setEmail(e.target.value);
         }}
         placeholder="email"
       />
-      <input
+      <Input
+        className="input"
         type="text"
         onChange={(e) => {
           setPassword(e.target.value);
         }}
         placeholder="password"
       />
-      <input
+      <Input
+        className="input"
         type="text"
         onChange={(e) => {
           setCpassword(e.target.value);
         }}
         placeholder="confirm password"
       />
-      <button className="btn signup-btn" onClick={sendDetails}>Signup</button>
+      {error !== "" && <label className="error-label">{error}</label>}
+      <button className="btn signup-btn" onClick={sendDetails}>
+        Signup
+      </button>
     </div>
   );
 }

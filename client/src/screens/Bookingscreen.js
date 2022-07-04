@@ -10,6 +10,7 @@ function Bookingscreen() {
   const { roomid, fromDate, toDate } = useParams();
   const [image, setImage] = useState("");
   const [images, setImages] = useState([]);
+  const [activeImage, setActiveImage] = useState(0);
   const [room, setRoom] = useState([]);
 
   const fromdate = moment(fromDate, "DD-MM-YYYY");
@@ -19,6 +20,11 @@ function Bookingscreen() {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const changeImage = (index) => {
+    setImage(images[index])
+    setActiveImage(index)
+  }
 
   useEffect(() => {
     axios
@@ -68,8 +74,8 @@ function Bookingscreen() {
         <div className="image-container">
           <img className="booking-image" src={image} alt="" />
           <div className="gallery">
-            {images.map((image) => (
-              <img src={image} alt="" />
+            {images.map((image, i) => (
+              <img src={image} className={activeImage === i && "active-image"} onClick={() => changeImage(i)} alt="" />
             ))}
           </div>
         </div>

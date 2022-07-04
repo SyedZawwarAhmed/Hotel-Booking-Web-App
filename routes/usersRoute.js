@@ -35,7 +35,7 @@ router.post("/signin", async (req, res) => {
         return res.status(400).send("Password is incorrect");
       }
     } else {
-      return res.status(400).send({ message: "User not found" });
+      return res.status(400).send("User not found");
     }
   } catch (error) {
     return res.status(400).json({ error });

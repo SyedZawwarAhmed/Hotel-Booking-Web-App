@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Input } from "antd";
 import axios from "axios";
-import Error from "../components/Error";
 import "../stylesheets/Signin.css";
 
 function Signinscreen() {
@@ -36,8 +35,7 @@ function Signinscreen() {
         })
         .catch((err) => {
           setLoading(false);
-          setError(err.message);
-          console.log("🚀 ~ file: Signinscreen.js ~ line 40 ~ signin ~ err.message", err)
+          setError(err.response.data);
         });
     } else {
       setError("Invalid email");
