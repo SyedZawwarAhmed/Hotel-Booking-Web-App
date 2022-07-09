@@ -10,7 +10,8 @@
 }
 
 .logo h1 {
-  color: var(--g);
+  color: white;
+  margin: 0;
 }
 
 .nav-buttons {
@@ -27,8 +28,19 @@
 
 .user-name {
   color: white;
+  margin: 0;
 }
 
 .signout-btn {
   color: var(--db);
+}
+
+.ant-space-item svg {
+  color: white;
+}
+
+.ant-space, .ant-space * {
+  display: flex;
+  align-items: center;
+
 }
