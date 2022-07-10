@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;400;500;600;700&family=Poppins&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Hind+Madurai&display=swap");
 
@@ -7,7 +8,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Bebas Neue", cursive;
+  /* font-family: "Be Vietnam Pro", sans-serif; */
+  font-family: "Poppins", sans-serif;
   /* background-color: hsla(120, 61%, 50%, 0.276); */
 }
 
@@ -18,17 +20,18 @@
   --db: hsl(238, 86%, 23%);
 }
 
-html, body {
+html,
+body {
   background-color: var(--lg);
+}
+
+h1 {
+  font-weight: 600;
 }
 
 .App {
   background-color: var(--lg);
   min-height: 100vh;
-}
-
-p {
-  font-family: "Hind Madurai", sans-serif;
 }
 
 .container {

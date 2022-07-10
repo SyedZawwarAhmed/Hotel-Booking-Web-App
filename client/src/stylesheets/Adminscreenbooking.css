@@ -1,15 +1,21 @@
-.admin-panel-booking {
+.admin-panel-booking, .admin-panel-room {
   border: 1px solid var(--g);
     background-color: white;
 }
 
 .admin-panel-booking > * {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: 20% 30% 20% 10% 10% 10%;
 }
 
-.admin-panel-booking > * * {
+.admin-panel-room > * {
+  display: grid;
+  grid-template-columns: 20% 30% 10% 20% 10% 10%;
+}
+
+.admin-panel-booking > * *, .admin-panel-room > * * {
   border: 1px solid var(--g);
+  word-wrap: break-word;
   padding: 0.5em;
   margin: 0;
 }

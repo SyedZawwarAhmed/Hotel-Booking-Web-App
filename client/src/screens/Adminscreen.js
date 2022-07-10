@@ -139,7 +139,7 @@ function Adminscreen() {
               </div>
             </TabPane>
             <TabPane tab="Rooms" key="3">
-              <div className="admin-panel-booking">
+              <div className="admin-panel-room">
                 <div className="admin-panel-booking-header">
                   <h2>Room Id</h2>
                   <h2>Room Name</h2>
