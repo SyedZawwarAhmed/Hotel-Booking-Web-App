@@ -104,7 +104,7 @@ function Homescreen() {
       ) : error !== "" ? (
         <Error message={error} />
       ) : (
-        <div className="rooms-container">
+        <div className="container rooms-container">
           <div className="row">
             <RangePicker format="DD-MM-YYYY" onChange={filterByDate} />
             <Input
@@ -171,6 +171,7 @@ function Homescreen() {
                 fromDate={fromDate}
                 toDate={toDate}
                 currentBookings={room.currentbookings}
+                rentperday={room.rentperday}
               />
             ))}
         </div>

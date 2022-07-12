@@ -17,7 +17,7 @@
 
 .rooms-container {
   max-width: var(--mw);
-  margin: 0 auto;
+  padding-inline: 1rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;

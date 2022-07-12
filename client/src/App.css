@@ -37,6 +37,7 @@ h1 {
 .container {
   max-width: var(--mw);
   margin: 0 auto;
+  padding: 0 1rem
 }
 
 .btn {
@@ -44,4 +45,10 @@ h1 {
   cursor: pointer;
   text-decoration: none;
   color: var(--g);
+}
+
+@media screen and (max-width: 1220px) {
+ .container {
+  margin: 0 1rem;
+ } 
 }
