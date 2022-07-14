@@ -37,3 +37,11 @@
   border: 2px solid red;
   transition: 0.5s ease border;
 }
+
+.description-container h2 {
+  font-size: 1.2rem;
+}
+
+.description-container p {
+  max-width:75ch;
+}

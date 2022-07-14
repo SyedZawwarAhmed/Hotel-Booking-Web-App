@@ -22,9 +22,9 @@ function Bookingscreen() {
   const [error, setError] = useState("");
 
   const changeImage = (index) => {
-    setImage(images[index])
-    setActiveImage(index)
-  }
+    setImage(images[index]);
+    setActiveImage(index);
+  };
 
   useEffect(() => {
     axios
@@ -70,19 +70,25 @@ function Bookingscreen() {
     return <Error message={error} />;
   } else {
     return (
-      <div className="container booking-container">
+      <div className="container">
+      <div className="booking-container">
         <div className="image-container">
           <img className="booking-image" src={image} alt="" />
           <div className="gallery">
             {images.map((image, i) => (
-              <img src={image} className={activeImage === i && "active-image"} onClick={() => changeImage(i)} alt="" />
+              <img
+                src={image}
+                className={activeImage === i && "active-image"}
+                onClick={() => changeImage(i)}
+                alt=""
+              />
             ))}
           </div>
         </div>
         <div className="details">
           <h1> {room.name} </h1>
           <h2> Rent per day:- {room.rentperday} </h2>
-          <h2> Max count:- {room.maxcount} </h2> 
+          <h2> Max count:- {room.maxcount} </h2>
           <h2> Category:- {room.type} </h2>
           <span>
             <h2> From:- {fromDate} </h2>
@@ -93,6 +99,11 @@ function Bookingscreen() {
           <button className="btn signup-btn booknow-btn" onClick={bookRoom}>
             Pay Now
           </button>
+        </div>
+      </div>
+        <div className="description-container">
+          <h2>Description</h2>
+          <p>{room.description}</p>
         </div>
       </div>
     );

@@ -24,3 +24,9 @@
   padding: 2rem 0;
   background-color: var(--lg);
 }
+
+@media screen and (max-width: 760px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
