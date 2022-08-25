@@ -6,7 +6,7 @@
 }
 
 .booking-image {
-  width: 40rem;
+  width: min(38rem, 50vw);
   object-fit: contain;
 }
 
@@ -27,7 +27,6 @@
 }
 
 .booknow-btn {
-  font-size: 1.4rem;
   align-self: flex-start;
   padding: 0.5em 1.75em !important;
   margin: 0 !important;
@@ -39,9 +38,26 @@
 }
 
 .description-container h2 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .description-container p {
   max-width:75ch;
+}
+
+.details h1 {
+  font-size: clamp(1.5rem, 2vw, 1.6rem)
+}
+
+.details h2 {
+  font-size: 1.2rem;
+}
+
+@media screen and (max-width: 650px) {
+  .booking-image {
+    width: 100%;
+  }
+  .booking-container {
+    flex-direction: column;
+  }
 }
