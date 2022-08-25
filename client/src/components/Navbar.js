@@ -82,10 +82,10 @@ function Navbar() {
           //     )}
           //   </div>
           <div className="nav-buttons">
-            <Link to="/user/signup" className="btn nav-btn">
+            <Link to="/user/signup" className="nav-btn">
               Singup
             </Link>
-            <Link to="/user/signin" className="btn nav-btn">
+            <Link to="/user/signin" className="nav-btn">
               Signin
             </Link>
           </div>
