@@ -84,6 +84,10 @@ function Bookingscreen() {
               />
             ))}
           </div>
+          <div className="description-container">
+          <h2>Description</h2>
+          <p>{room.description}</p>
+        </div>
         </div>
         <div className="details">
           <h1> {room.name} </h1>
@@ -101,10 +105,6 @@ function Bookingscreen() {
           </button>
         </div>
       </div>
-        <div className="description-container">
-          <h2>Description</h2>
-          <p>{room.description}</p>
-        </div>
       </div>
     );
   }
