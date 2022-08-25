@@ -23,6 +23,7 @@
 html,
 body {
   background-color: var(--lg);
+  overflow: hidden;
 }
 
 h1 {
@@ -46,6 +47,8 @@ h1 {
   text-decoration: none;
   color: var(--g);
   font-size: clamp(1rem, 2vw, 1.2rem);
+  padding: 0.8em 2em;
+  border-radius: 0.3rem;
 }
 
 @media screen and (max-width: 1220px) {
