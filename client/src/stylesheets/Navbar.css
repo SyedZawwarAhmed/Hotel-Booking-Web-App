@@ -1,9 +1,9 @@
 .navbar {
-  padding: 2em;
   background-color: #020329;
 }
 
 .nav-container {
+  padding: 0 1rem;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -12,6 +12,7 @@
 .logo h1 {
   color: white;
   margin: 0;
+  font-size: clamp(1.5rem, 2vw, 2rem)
 }
 
 .nav-buttons {
@@ -20,10 +21,9 @@
 
 .nav-btn {
   align-self: flex-end;
-  padding: 1em 3em;
   margin-left: 1rem;
-  color: var(--db);
-  background-color: var(--lg);
+  color: var(--lg);
+  font-size: clamp(1rem, 2vw, 1.2rem)
 }
 
 .user-name {
