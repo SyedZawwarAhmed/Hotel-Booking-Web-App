@@ -23,7 +23,7 @@
 html,
 body {
   background-color: var(--lg);
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 h1 {
