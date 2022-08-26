@@ -7,13 +7,45 @@
   gap: 3em;
 }
 
-.col-1 .booking-img {
+.booking-img {
   width: 20rem;
 }
 
+.col-2 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .cancel-btn {
-    float: right;
-    font-size: 1.2rem;
-    padding: 0.5em 1.25em;
-    background-color: var(--db);
+  align-self: flex-end;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  padding: 0.5em 1.25em;
+  background-color: var(--db);
+}
+
+@media screen and (max-width: 960px) {
+  .booking {
+    gap: 1rem;
+  }
+
+  .booking-img {
+    width: 40vw;
+  }
+}
+
+@media screen and (max-width: 804px) {
+  .booking {
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .booking {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-img {
+    width: 100%;
+  }
 }
