@@ -16,8 +16,8 @@ function Adminscreen() {
   const [rooms, setRooms] = useState([]);
 
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("")
-  const [defaultTab, setDefaultTab] = useState("1")
+  const [error, setError] = useState("");
+  const [defaultTab, setDefaultTab] = useState("1");
 
   useEffect(async () => {
     if (!JSON.parse(localStorage.getItem("currentUser")).isAdmin) {
@@ -40,7 +40,7 @@ function Adminscreen() {
       setRooms(roomsData.data.rooms);
       setLoading(false);
     } catch (error) {
-      setError(error.message)
+      setError(error.message);
       setLoading(false);
     }
   }, []);
@@ -67,17 +67,17 @@ function Adminscreen() {
       type,
     };
     try {
-      setLoading(true)
+      setLoading(true);
       const response = await axios.post(
         "http://localhost:5000/api/rooms/addroom",
         body
       );
-      defaultTab = "4"
-      setLoading(false)
+      defaultTab = "4";
+      setLoading(false);
     } catch (error) {
-      setDefaultTab("4")
-      setError(error.message)
-      setLoading(false)
+      setDefaultTab("4");
+      setError(error.message);
+      setLoading(false);
     }
   };
 
@@ -85,27 +85,30 @@ function Adminscreen() {
     <>
       {loading ? (
         <Loading />
-      ) : error !== "" ? <Error message={error} /> : (
+      ) : error !== "" ? (
+        <Error message={error} />
+      ) : (
         <div className="container">
           <h1>Admin Panel</h1>
 
           <Tabs defaultActiveKey={defaultTab} onChange={onChange}>
             <TabPane tab="Users" key="1">
-              
               <div className="admin-panel-user">
-                <div className="admin-panel-user-header">
-                  <h2>User id</h2>
-                  <h2>Name</h2>
-                  <h2>email</h2>
-                  <h2>Admin</h2>
-                </div>
                 {users.map((user, i) => {
                   return (
-                    <div className="admin-panel-user-details" key={i}>
-                      <p>{user._id}</p>
-                      <p>{user.name}</p>
-                      <p>{user.email}</p>
-                      <p>{user.isAdmin ? "Yes" : "no"}</p>
+                    <div key={i}>
+                      <div className="admin-panel-user-header">
+                        <h2>User id</h2>
+                        <h2>Name</h2>
+                        <h2>email</h2>
+                        <h2>Admin</h2>
+                      </div>
+                      <div className="admin-panel-user-details">
+                        <p>{user._id}</p>
+                        <p>{user.name}</p>
+                        <p>{user.email}</p>
+                        <p>{user.isAdmin ? "Yes" : "no"}</p>
+                      </div>
                     </div>
                   );
                 })}
@@ -113,26 +116,28 @@ function Adminscreen() {
             </TabPane>
             <TabPane tab="Bookings" key="2">
               <div className="admin-panel-booking">
-                <div className="admin-panel-booking-header">
-                  <h2>Booking Id</h2>
-                  <h2>Room Name</h2>
-                  <h2>User Id</h2>
-                  <h2>Status</h2>
-                  <h2>Duration</h2>
-                  <h2>Amount</h2>
-                </div>
                 {bookings.map((booking, i) => {
                   return (
-                    <div className="admin-panel-booking-details" key={i}>
-                      <p>{booking._id}</p>
-                      <p>{booking.room}</p>
-                      <p>{booking.userid}</p>
-                      <p>{booking.status}</p>
-                      <p>
-                        {booking.fromdate} to {booking.todate} <br /> (
-                        {booking.totaldays} days)
-                      </p>
-                      <p>{booking.totalamount}</p>
+                    <div key={i}>
+                      <div className="admin-panel-booking-header">
+                        <h1>Booking Id</h1>
+                        <h1>Room Name</h1>
+                        <h1>User Id</h1>
+                        <h1>Status</h1>
+                        <h1>Duration</h1>
+                        <h1>Amount</h1>
+                      </div>
+                      <div className="admin-panel-booking-details">
+                        <p>{booking._id}</p>
+                        <p>{booking.room}</p>
+                        <p>{booking.userid}</p>
+                        <p>{booking.status}</p>
+                        <p>
+                          {booking.fromdate} to {booking.todate} <br /> (
+                          {booking.totaldays} days)
+                        </p>
+                        <p>{booking.totalamount}</p>
+                      </div>
                     </div>
                   );
                 })}
@@ -140,23 +145,25 @@ function Adminscreen() {
             </TabPane>
             <TabPane tab="Rooms" key="3">
               <div className="admin-panel-room">
-                <div className="admin-panel-booking-header">
-                  <h2>Room Id</h2>
-                  <h2>Room Name</h2>
-                  <h2>Max Count</h2>
-                  <h2>Phone Number</h2>
-                  <h2>Rent per day</h2>
-                  <h2>type</h2>
-                </div>
                 {rooms.map((room, i) => {
                   return (
                     <div key={i}>
-                      <p>{room._id}</p>
-                      <p>{room.name}</p>
-                      <p>{room.maxcount}</p>
-                      <p>{room.phonenumber}</p>
-                      <p>{room.rentperday}</p>
-                      <p>{room.type}</p>
+                      <div className="admin-panel-booking-header">
+                        <h2>Room Id</h2>
+                        <h2>Room Name</h2>
+                        <h2>Max Count</h2>
+                        <h2>Phone Number</h2>
+                        <h2>Rent per day</h2>
+                        <h2>type</h2>
+                      </div>
+                      <div>
+                        <p>{room._id}</p>
+                        <p>{room.name}</p>
+                        <p>{room.maxcount}</p>
+                        <p>{room.phonenumber}</p>
+                        <p>{room.rentperday}</p>
+                        <p>{room.type}</p>
+                      </div>
                     </div>
                   );
                 })}
