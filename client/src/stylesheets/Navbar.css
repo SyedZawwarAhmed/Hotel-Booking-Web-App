@@ -9,10 +9,13 @@
   align-items: center;
 }
 
+.logo {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
 .logo h1 {
-  color: white;
   margin: 0;
-  font-size: clamp(1.5rem, 2vw, 2rem)
+  color: white;
 }
 
 .nav-buttons {
@@ -23,12 +26,16 @@
   align-self: flex-end;
   margin-left: 1rem;
   color: var(--lg);
-  font-size: clamp(1rem, 2vw, 1.2rem)
+  font-size: clamp(1rem, 2vw, 1.2rem);
 }
 
 .user-name {
   color: white;
   margin: 0;
+}
+
+.user-name img {
+  width: 2rem;
 }
 
 .signout-btn {
@@ -39,8 +46,8 @@
   color: white;
 }
 
-.ant-space, .ant-space * {
+.ant-space,
+.ant-space * {
   display: flex;
   align-items: center;
-
 }
