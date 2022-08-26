@@ -1,15 +1,19 @@
 .admin-panel-user {
-    border: 1px solid var(--g);
-    background-color: white;
+  border: 1px solid var(--g);
+  background-color: white;
 }
 
 .admin-panel-user > * {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+  display: grid;
+  grid-template-columns: 30% 70%;
 }
 
 .admin-panel-user > * * {
-    border: 1px solid var(--g);
-    padding: 0.5em;
-    margin: 0;
+  border: 1px solid var(--g);
+  padding: 0.5em;
+  margin: 0;
 }
+
+.admin-panel-user *, .admin-panel-booking *, .admin-panel-room * {
+    font-size: 1rem; 
+} 
