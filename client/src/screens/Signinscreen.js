@@ -26,7 +26,7 @@ function Signinscreen() {
       };
 
       await axios
-        .post("http://localhost:5000/api/users/signin", user)
+        .post("https://hotel-booking-backend.netlify.app/.netlify/functions/api/users/signin", user)
         .then((res) => {
           console.log(res.data);
           localStorage.setItem("currentUser", JSON.stringify(res.data));
