@@ -31,7 +31,7 @@ function Signupscreen() {
     if (validateEmail(email)) {
       if (password === cpassword) {
         axios
-          .post("http://localhost:5000/api/users/signup", user)
+          .post("https://hotel-booking-backend.netlify.app/.netlify/functions/api/users/signup", user)
           .then((res) => {
             console.log(res.data);
           })
