@@ -12,7 +12,7 @@ function Bookings({ user }) {
   useEffect(async () => {
     try {
       const data = await axios.post(
-        "http://localhost:5000/api/bookings/getBookings",
+        "https://hotel-booking-backend.netlify.app/.netlify/functions/api/bookings/getBookings",
         { id: user._id }
       );
       setBookings(data.data);
@@ -27,7 +27,7 @@ function Bookings({ user }) {
     try {
       setLoading(true);
       const data = await axios.post(
-        "http://localhost:5000/api/bookings/cancelBooking",
+        "https://hotel-booking-backend.netlify.app/.netlify/functions/api/bookings/cancelBooking",
         { bookingid: booking._id, roomid: booking.roomid }
       );
       setBookings(() => {
