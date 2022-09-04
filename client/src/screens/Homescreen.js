@@ -26,7 +26,7 @@ function Homescreen() {
   useEffect(async () => {
     try {
       const data = await axios.get(
-        "http://localhost:5000/api/rooms/getallrooms"
+        "https://hotel-booking-backend.netlify.app/.netlify/functions/api/rooms/getallrooms"
       );
       setRooms(data.data.rooms);
       setTempRooms(data.data.rooms);
