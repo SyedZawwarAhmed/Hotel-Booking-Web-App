@@ -28,7 +28,7 @@ function Bookingscreen() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/rooms/getroom/${roomid}`)
+      .get(`https://hotel-booking-backend.netlify.app/.netlify/functions/api/rooms/getroom/${roomid}`)
       .then((res) => {
         console.log(res.data.room);
         setRoom(res.data.room);
@@ -56,7 +56,7 @@ function Bookingscreen() {
 
     try {
       const result = await axios.post(
-        "http://localhost:5000/api/bookings/bookroom",
+        "https://hotel-booking-backend.netlify.app/.netlify/functions/api/bookings/bookroom",
         bookingDetails
       );
       window.location.href = "/user/profile";
