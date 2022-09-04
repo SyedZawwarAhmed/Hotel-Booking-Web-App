@@ -14,7 +14,7 @@ function App() {
       <BrowserRouter>
       <Navbar />
         <Routes>
-          <Route path="/home" exact element={<Homescreen />} />
+          <Route path="/" exact element={<Homescreen />} />
           <Route path="/booking/:roomid/:fromDate/:toDate" exact element={<Bookingscreen />} />
           <Route path="/user/signup"  element={<Signupscreen />} />
           <Route path="/user/signin"  element={<Signinscreen />} />
