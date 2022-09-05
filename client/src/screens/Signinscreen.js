@@ -56,7 +56,7 @@ function Signinscreen() {
       />
       <Input
         className="input"
-        type="text"
+        type="password"
         placeholder="password"
         status=""
         onChange={(e) => {

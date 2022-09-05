@@ -68,7 +68,7 @@ function Signupscreen() {
       />
       <Input
         className="input"
-        type="text"
+        type="password"
         onChange={(e) => {
           setPassword(e.target.value);
         }}
@@ -76,7 +76,7 @@ function Signupscreen() {
       />
       <Input
         className="input"
-        type="text"
+        type="password"
         onChange={(e) => {
           setCpassword(e.target.value);
         }}
