@@ -31,6 +31,10 @@
   text-decoration: none;
 }
 
+.signin-reminder {
+  text-align: right;
+}
+
 @media screen and (max-width: 1094px) {
   .room-image {
     width: calc(50vw - 4rem);
