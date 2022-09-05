@@ -31,7 +31,7 @@ function Signinscreen() {
           console.log(res.data);
           localStorage.setItem("currentUser", JSON.stringify(res.data));
           setLoading(false);
-          window.location.href = "/home";
+          window.location.href = "/";
         })
         .catch((err) => {
           setLoading(false);

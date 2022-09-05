@@ -43,8 +43,8 @@ function Navbar() {
     <div className="navbar">
       <div className="container nav-container">
         <div className="logo">
-          <Link className="btn" to="/home">
-            <h1>Auberroom</h1>
+          <Link className="btn" to="/">
+            <h1>Hotelnut</h1>
           </Link>
         </div>
         {currentUser ? (
