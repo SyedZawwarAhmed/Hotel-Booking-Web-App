@@ -31,15 +31,12 @@ Hotelnut is a Hotel Booking Web App built on the MERN stack where users can regi
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 ## Author
 
-- [@Syed Zawwar Ahmed](https://www.github.com/SyedZawwarAhmed)
+[@Syed Zawwar Ahmed](https://www.github.com/SyedZawwarAhmed)
 
 
 ## Contributing
 
-Contributions are always welcome!
-
-
-
+Contributions are always welcome. If you want to contribute to the project, just make a pull request to this repository.
 
 ## Feedback
 
