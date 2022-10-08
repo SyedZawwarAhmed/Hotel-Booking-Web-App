@@ -16,7 +16,7 @@ Hotelnut is a Hotel Booking Web App built on the MERN stack where users can regi
 
 ## Tech Stack
 
-**Client:** React
+**Client:** React, Annt Design, Vanilla CSS
 
 **Server:** Node, Express, MongoDB, Mongoose
 
