@@ -26,9 +26,6 @@ Hotelnut is a Hotel Booking Web App built on the MERN stack where users can regi
 - The Client side of this project is deployed on [Vercel.com](http://vercel.com)
 - The Server side is deployed on netlify using the [Netlify](https://netlify.com) serverless lamda funtions.
 
-## Badges
-
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 ## Author
 
 [@Syed Zawwar Ahmed](https://www.github.com/SyedZawwarAhmed)
