@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Input } from "antd";
 import axios from "axios";
 import "../stylesheets/Signin.css";
+import { BASE_URL } from "../configs";
 
 function Signinscreen() {
   const [email, setEmail] = useState("");
@@ -26,7 +27,7 @@ function Signinscreen() {
       };
 
       await axios
-        .post("https://hotel-booking-backend.netlify.app/.netlify/functions/api/users/signin", user)
+        .post(`${BASE_URL}/api/users/signin`, user)
         .then((res) => {
           console.log(res.data);
           localStorage.setItem("currentUser", JSON.stringify(res.data));

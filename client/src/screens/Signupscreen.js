@@ -1,6 +1,7 @@
 import Input from "antd/lib/input/Input";
 import axios from "axios";
 import React, { useState } from "react";
+import { BASE_URL } from "../configs";
 import "../stylesheets/Signin.css";
 
 function Signupscreen() {
@@ -33,13 +34,13 @@ function Signupscreen() {
       if (password === cpassword) {
         axios
           .post(
-            "https://hotel-booking-backend.netlify.app/.netlify/functions/api/users/signup",
+            `${BASE_URL}/api/users/signup`,
             user
           )
           .then(async (res) => {
             await axios
               .post(
-                "https://hotel-booking-backend.netlify.app/.netlify/functions/api/users/signin",
+                `${BASE_URL}/api/users/signin`,
                 user
               )
               .then((res) => {
