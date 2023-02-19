@@ -15,5 +15,15 @@ app.use("/.netlify/functions/api/rooms", roomsRoute);
 app.use("/.netlify/functions/api/users", usersRoute);
 app.use("/.netlify/functions/api/bookings", bookingsRoute);
 
+// error handler
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.send({
+    error: {
+      message: err.message,
+    },
+  });
+});
+
 module.exports = app;
 module.exports.handler = serverless(app);

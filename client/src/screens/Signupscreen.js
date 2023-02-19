@@ -51,12 +51,13 @@ function Signupscreen() {
               })
               .catch((err) => {
                 setLoading(false);
-                setError(err.response.data);
+                setError(err.message)
               });
           })
           .catch((err) => {
+            console.log("🚀 ~ file: Signupscreen.js:58 ~ sendDetails ~ err", err)
             setLoading(false);
-            setError(err.response.data);
+            setError(err.message);
           });
       } else {
         setLoading(false);

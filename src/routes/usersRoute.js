@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
 
-router.post("/signup", async (req, res) => {
+router.post("/signup", async (req, res, next) => {
   try {
     if ((await User.findOne({ email: req.body.email })) === null) {
       const newUser = await new User(req.body);
@@ -10,14 +10,16 @@ router.post("/signup", async (req, res) => {
         res.send("Registered Successfully");
       });
     } else {
-      return res.status(400).json({ message: "User already exists." });
+      const err = new Error("User already exists.");
+      err.status = 400;
+      return next(err);
     }
   } catch (error) {
-    return res.status(400).json({ message: error.message });
+    next(error)
   }
 });
 
-router.post("/signin", async (req, res) => {
+router.post("/signin", async (req, res, next) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email: email });
@@ -37,7 +39,7 @@ router.post("/signin", async (req, res) => {
       return res.status(400).send("User not found");
     }
   } catch (error) {
-    return res.status(400).json({ error });
+    next(error);
   }
 });
 
