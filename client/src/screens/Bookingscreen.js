@@ -5,6 +5,7 @@ import "../stylesheets/Booking.css";
 import moment from "moment";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
+import { BASE_URL } from "../configs";
 
 function Bookingscreen() {
   const { roomid, fromDate, toDate } = useParams();
@@ -28,7 +29,7 @@ function Bookingscreen() {
 
   useEffect(() => {
     axios
-      .get(`https://hotel-booking-backend.netlify.app/.netlify/functions/api/rooms/getroom/${roomid}`)
+      .get(`${BASE_URL}/api/rooms/getroom/${roomid}`)
       .then((res) => {
         console.log(res.data.room);
         setRoom(res.data.room);
@@ -56,7 +57,7 @@ function Bookingscreen() {
 
     try {
       const result = await axios.post(
-        "https://hotel-booking-backend.netlify.app/.netlify/functions/api/bookings/bookroom",
+        `${BASE_URL}/api/bookings/bookroom`,
         bookingDetails
       );
       window.location.href = "/user/profile";
