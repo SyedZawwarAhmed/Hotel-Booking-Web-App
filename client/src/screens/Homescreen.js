@@ -10,6 +10,7 @@ import { Dropdown, Menu } from "antd";
 import "../stylesheets/Home.css";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
+import { BASE_URL } from "../configs";
 
 function Homescreen() {
   const { RangePicker } = DatePicker;
@@ -26,7 +27,7 @@ function Homescreen() {
   useEffect(async () => {
     try {
       const data = await axios.get(
-        "https://hotel-booking-backend.netlify.app/.netlify/functions/api/rooms/getallrooms"
+        `${BASE_URL}/api/rooms/getallrooms`
       );
       setRooms(data.data.rooms);
       setTempRooms(data.data.rooms);
