@@ -6,6 +6,7 @@ import "../stylesheets/Adminscreenbooking.css";
 import "../stylesheets/Adminscreenaddroom.css";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
+import { BASE_URL } from "../configs";
 const { TabPane } = Tabs;
 
 function Adminscreen() {
@@ -25,17 +26,17 @@ function Adminscreen() {
     }
     try {
       const usersData = await axios.get(
-        "https://hotel-booking-backend.netlify.app/.netlify/functions/api/users/getallusers"
+        `${BASE_URL}/api/users/getallusers`
       );
       setUsers(usersData.data);
 
       const bookingsData = await axios.get(
-        "https://hotel-booking-backend.netlify.app/.netlify/functions/api/bookings/getallbookings"
+        `${BASE_URL}/api/bookings/getallbookings`
       );
       setBookings(bookingsData.data);
 
       const roomsData = await axios.get(
-        "https://hotel-booking-backend.netlify.app/.netlify/functions/api/rooms/getallrooms"
+        `${BASE_URL}/api/rooms/getallrooms`
       );
       setRooms(roomsData.data.rooms);
       setLoading(false);
@@ -69,7 +70,7 @@ function Adminscreen() {
     try {
       setLoading(true);
       const response = await axios.post(
-        "https://hotel-booking-backend.netlify.app/.netlify/functions/api/rooms/addroom",
+        `${BASE_URL}/api/rooms/addroom`,
         body
       );
       defaultTab = "4";
