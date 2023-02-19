@@ -13,6 +13,7 @@ function Signupscreen() {
   const [error, setError] = useState("");
 
   function sendDetails() {
+    setLoading(true);
     const user = {
       name,
       email,
@@ -31,18 +32,37 @@ function Signupscreen() {
     if (validateEmail(email)) {
       if (password === cpassword) {
         axios
-          .post("https://hotel-booking-backend.netlify.app/.netlify/functions/api/users/signup", user)
-          .then((res) => {
-            console.log(res.data);
+          .post(
+            "https://hotel-booking-backend.netlify.app/.netlify/functions/api/users/signup",
+            user
+          )
+          .then(async (res) => {
+            await axios
+              .post(
+                "https://hotel-booking-backend.netlify.app/.netlify/functions/api/users/signin",
+                user
+              )
+              .then((res) => {
+                console.log(res.data);
+                localStorage.setItem("currentUser", JSON.stringify(res.data));
+                setLoading(false);
+                window.location.href = "/";
+              })
+              .catch((err) => {
+                setLoading(false);
+                setError(err.response.data);
+              });
           })
           .catch((err) => {
             setLoading(false);
             setError(err.response.data);
           });
       } else {
+        setLoading(false);
         setError("Passwords should match");
       }
     } else {
+      setLoading(false);
       setError("Enter a valid email address");
     }
   }
@@ -83,9 +103,11 @@ function Signupscreen() {
         placeholder="confirm password"
       />
       {error !== "" && <label className="error-label">{error}</label>}
-      <button className="btn signup-btn" onClick={sendDetails}>
-        Signup
-      </button>
+      <div>
+        <button className="btn signup-btn" onClick={sendDetails}>
+          Signup
+        </button>
+      </div>
     </div>
   );
 }
