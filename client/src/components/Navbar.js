@@ -65,7 +65,7 @@ function Navbar() {
         ) : (
           <div className="nav-buttons">
             <Link to="/user/signup" className="nav-btn">
-              Singup
+              Signup
             </Link>
             <Link to="/user/signin" className="nav-btn">
               Signin
